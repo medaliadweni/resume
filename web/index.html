@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Professional CV Portfolio">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="cvmed">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <title>Mohamed Ali Adweni | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1E3D59, #17C3B2);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .loading-container {
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      padding: 40px;
+    }
+
+    .identity-container {
+      margin-bottom: 30px;
+    }
+
+    .name {
+      color: white;
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.5px;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .title {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 18px;
+      font-weight: 400;
+      margin: 10px 0 0;
+      opacity: 0;
+      animation: fadeInUp 1s 0.3s ease-out forwards;
+    }
+
+    .loading-text {
+      color: white;
+      font-size: 16px;
+      margin: 30px 0 20px;
+      opacity: 0;
+      animation: fadeInOut 2s 0.6s infinite;
+    }
+
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      margin: 0 auto;
+      animation: spinnerRotate 2s infinite ease;
+      opacity: 0;
+      animation: fadeIn 0.5s 0.8s ease forwards, spinnerRotate 2s 0.8s infinite ease;
+    }
+
+    .spinner-circle {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border: 8px solid transparent;
+      border-radius: 50%;
+      border-top-color: #FF6E40;
+      border-right-color: #17C3B2;
+      border-bottom-color: #FF6E40;
+      border-left-color: #17C3B2;
+      animation: spinnerRotateReverse 1s infinite linear;
+    }
+
+    .spinner-inner {
+      width: 60%;
+      height: 60%;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      border: 8px solid transparent;
+      border-radius: 50%;
+      border-top-color: white;
+      border-right-color: white;
+      border-bottom-color: white;
+      border-left-color: white;
+      animation: spinnerRotate 1.5s infinite linear;
+    }
+
+    .progress-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.5s 1s ease forwards;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,1));
+      animation: progressBar 1.5s infinite ease-in-out;
+    }
+
+    .tagline {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      margin-top: 30px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spinnerRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes spinnerRotateReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes progressBar {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
+    #flutter-target {
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+    }
+
+    .flutter-loader {
+      display: none;
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var loadingElement = document.getElementById('loading-container');
+        var flutterElement = document.getElementById('flutter-target');
+        
+        if (flutterElement && loadingElement) {
+          flutterElement.style.opacity = '1';
+          loadingElement.style.display = 'none';
+        }
+      }, 2500);
+    });
+  </script>
+  <link rel="manifest" href="manifest.json">
+  <script>
+    var serviceWorkerVersion = null;
+  </script>
+  <script src="flutter.js" defer></script>
+</head>
+<body>
+  <div id="loading-container" class="loading-container">
+    <div class="identity-container">
+      <h1 class="name">Mohamed Ali Adweni</h1>
+      <p class="title">Software Engineer & Flutter Expert</p>
+    </div>
+    <div class="loading-text">Preparing your experience...</div>
+    <div class="loading-spinner">
+      <div class="spinner-circle"></div>
+      <div class="spinner-inner"></div>
+    </div>
+    <div class="progress-bar"></div>
+    <p class="tagline">Building beautiful, responsive applications</p>
+  </div>
+  <div id="flutter-target"></div>
+  <script>
+    window.addEventListener('load', function(ev) {
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
