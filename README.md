@@ -34,15 +34,15 @@ This project is configured for automatic deployment to GitHub Pages using GitHub
 
 ### Automatic Deployment
 
-1. Push your changes to the `main` branch
+1. Push your changes to the `main` or `master` branch
 2. GitHub Actions will automatically build and deploy your app to GitHub Pages
-3. Your app will be available at `https://[your-username].github.io/cvmed/`
+3. Your app will be available at `https://[your-username].github.io/resume/`
 
 ### Manual Deployment
 
 If you prefer to deploy manually:
 
-1. Build the web app: `flutter build web --release --base-href /cvmed/`
+1. Build the web app: `flutter build web --release --base-href /resume/`
 2. Navigate to your GitHub repository settings
 3. Go to Pages section
 4. Select the `gh-pages` branch and `/` (root) folder
@@ -73,4 +73,3 @@ You can customize your CV by modifying the sample data in `lib/models/cv_data.da
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-# resume

@@ -2,8 +2,11 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -20,7 +23,7 @@ jobs:
         run: flutter pub get
         
       - name: Build web
-        run: flutter build web --release --base-href /cvmed/
+        run: flutter build web --release --base-href /resume/
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

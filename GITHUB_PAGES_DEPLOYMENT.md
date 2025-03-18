@@ -6,13 +6,13 @@ This guide will help you deploy your Flutter web application to GitHub Pages.
 
 - A GitHub account
 - Git installed on your computer
-- Your Flutter project (cvmed)
+- Your Flutter project (resume)
 
 ## Step 1: Create a GitHub Repository
 
 1. Go to [GitHub](https://github.com) and sign in to your account
 2. Click on the "+" icon in the top-right corner and select "New repository"
-3. Name your repository "cvmed"
+3. Name your repository "resume"
 4. Choose whether to make it public or private
 5. Click "Create repository"
 
@@ -31,7 +31,7 @@ git add .
 git commit -m "Initial commit"
 
 # Add your GitHub repository as remote
-git remote add origin https://github.com/YOUR_USERNAME/cvmed.git
+git remote add origin https://github.com/YOUR_USERNAME/resume.git
 
 # Push your code to GitHub
 git push -u origin main
@@ -52,7 +52,7 @@ Replace `YOUR_USERNAME` with your actual GitHub username.
 The GitHub Actions workflow we've set up will automatically:
 1. Build your Flutter web app
 2. Deploy it to the gh-pages branch
-3. Make it available at `https://YOUR_USERNAME.github.io/cvmed/`
+3. Make it available at `https://YOUR_USERNAME.github.io/resume/`
 
 This process usually takes 2-5 minutes after pushing to the main branch.
 
@@ -62,7 +62,7 @@ If your deployment doesn't work:
 
 1. Check the "Actions" tab in your GitHub repository to see if there are any errors
 2. Make sure you've enabled GitHub Pages in the repository settings
-3. Verify that the repository name matches the base-href in the build command (`/cvmed/`)
+3. Verify that the repository name matches the base-href in the build command (`/resume/`)
 
 ## Manual Deployment
 
@@ -70,7 +70,7 @@ If you prefer to deploy manually:
 
 1. Build the web app locally:
    ```bash
-   flutter build web --release --base-href /cvmed/
+   flutter build web --release --base-href /resume/
    ```
 
 2. Create a new branch named gh-pages:
