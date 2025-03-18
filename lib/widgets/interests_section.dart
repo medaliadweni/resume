@@ -14,8 +14,8 @@ class InterestsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: AppTheme.spacingSmall,
-      runSpacing: AppTheme.spacingSmall,
+      spacing: AppTheme.spacingMedium,
+      runSpacing: AppTheme.spacingMedium,
       children: interests.asMap().entries.map((entry) {
         final index = entry.key;
         final interest = entry.value;
@@ -35,16 +35,18 @@ class InterestsSection extends StatelessWidget {
         child: InkWell(
           onTap: () {}, // Optional interaction
           borderRadius: BorderRadius.circular(AppTheme.borderRadiusLarge),
+          splashColor: color.withOpacity(0.1),
+          highlightColor: color.withOpacity(0.05),
           child: Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppTheme.spacingSmall,
-              vertical: 8,
+              horizontal: AppTheme.spacingMedium,
+              vertical: 10,
             ),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  color.withOpacity(0.1),
-                  color.withOpacity(0.2),
+                  Colors.white,
+                  color.withOpacity(0.05),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -54,21 +56,42 @@ class InterestsSection extends StatelessWidget {
                 color: color.withOpacity(0.3),
                 width: 1,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withOpacity(0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                  spreadRadius: -2,
+                ),
+              ],
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                FaIcon(
-                  iconData,
-                  size: 14,
-                  color: color,
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        color.withOpacity(0.2),
+                        color.withOpacity(0.1),
+                      ],
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: FaIcon(
+                    iconData,
+                    size: 14,
+                    color: color,
+                  ),
                 ),
-                const SizedBox(width: 6),
+                const SizedBox(width: 8),
                 Text(
                   interest,
-                  style: AppTheme.bodySmall.copyWith(
+                  style: AppTheme.bodyMedium.copyWith(
                     color: AppTheme.textPrimaryColor,
                     fontWeight: FontWeight.w500,
+                    letterSpacing: 0.2,
                   ),
                 ),
               ],
@@ -78,12 +101,12 @@ class InterestsSection extends StatelessWidget {
       ),
     ).animate().fadeIn(
           delay: Duration(milliseconds: 100 * index),
-          duration: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 500),
         ).scale(
-          begin: const Offset(0.9, 0.9),
+          begin: const Offset(0.95, 0.95),
           end: const Offset(1, 1),
           delay: Duration(milliseconds: 100 * index),
-          duration: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 500),
           curve: Curves.easeOutBack,
         );
   }
@@ -94,7 +117,7 @@ class InterestsSection extends StatelessWidget {
     if (lowercaseInterest.contains('travel') || lowercaseInterest.contains('touring')) {
       return FontAwesomeIcons.plane;
     } else if (lowercaseInterest.contains('read') || lowercaseInterest.contains('book')) {
-      return FontAwesomeIcons.book;
+      return FontAwesomeIcons.bookOpen;
     } else if (lowercaseInterest.contains('music') || lowercaseInterest.contains('singing')) {
       return FontAwesomeIcons.music;
     } else if (lowercaseInterest.contains('cook') || lowercaseInterest.contains('food')) {
@@ -122,6 +145,14 @@ class InterestsSection extends StatelessWidget {
       return FontAwesomeIcons.film;
     } else if (lowercaseInterest.contains('write') || lowercaseInterest.contains('blog')) {
       return FontAwesomeIcons.pencil;
+    } else if (lowercaseInterest.contains('podcast') || lowercaseInterest.contains('audio')) {
+      return FontAwesomeIcons.podcast;
+    } else if (lowercaseInterest.contains('garden') || lowercaseInterest.contains('plant')) {
+      return FontAwesomeIcons.seedling;
+    } else if (lowercaseInterest.contains('yoga') || lowercaseInterest.contains('meditation')) {
+      return FontAwesomeIcons.personPraying;
+    } else if (lowercaseInterest.contains('dance') || lowercaseInterest.contains('dancing')) {
+      return FontAwesomeIcons.music;
     } else {
       // Default icon for other interests
       return FontAwesomeIcons.star;
@@ -136,6 +167,10 @@ class InterestsSection extends StatelessWidget {
       AppTheme.infoColor,
       AppTheme.successColor,
       AppTheme.warningColor,
+      Colors.teal,
+      Colors.indigo,
+      Colors.deepPurple,
+      Colors.amber,
     ];
     
     return colors[index % colors.length];

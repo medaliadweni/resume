@@ -19,23 +19,65 @@ class SectionTitle extends StatelessWidget {
     return Row(
       children: [
         Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(AppTheme.borderRadiusSmall),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                color.withOpacity(0.15),
+                color.withOpacity(0.05),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(AppTheme.borderRadiusMedium),
+            boxShadow: [
+              BoxShadow(
+                color: color.withOpacity(0.2),
+                blurRadius: 10,
+                offset: const Offset(0, 2),
+                spreadRadius: -2,
+              ),
+            ],
+            border: Border.all(
+              color: color.withOpacity(0.2),
+              width: 1,
+            ),
           ),
           child: Icon(
             icon,
             color: color,
-            size: 20,
+            size: 22,
           ),
         ),
-        const SizedBox(width: AppTheme.spacingSmall),
-        Text(
-          title,
-          style: AppTheme.headingMedium.copyWith(
-            color: AppTheme.textPrimaryColor,
-            fontWeight: FontWeight.bold,
+        const SizedBox(width: AppTheme.spacingMedium),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: AppTheme.headingMedium.copyWith(
+                  color: AppTheme.textPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.3,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 6, right: 40),
+                height: 2,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      color.withOpacity(0.7),
+                      color.withOpacity(0.0),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ],
           ),
         ),
       ],

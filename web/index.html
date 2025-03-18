@@ -1,246 +1,307 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Professional CV Portfolio">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="cvmed">
+  <meta name="description" content="Professional portfolio of Mohamed Ali Adweni - Flutter Developer">
+  <meta name="keywords" content="flutter developer, dart, mobile development, web development, Mohamed Ali Adweni">
+  <meta name="author" content="Mohamed Ali Adweni">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohamedadweni.com/">
+  <meta property="og:title" content="Mohamed Ali Adweni | Flutter Developer">
+  <meta property="og:description" content="Building beautiful cross-platform applications with Flutter">
+  <meta property="og:image" content="icons/Icon-512.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://mohamedadweni.com/">
+  <meta property="twitter:title" content="Mohamed Ali Adweni | Flutter Developer">
+  <meta property="twitter:description" content="Building beautiful cross-platform applications with Flutter">
+  <meta property="twitter:image" content="icons/Icon-512.png">
+
+  <!-- Favicon and App Icons -->
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
   <link rel="icon" type="image/png" href="favicon.png"/>
-  <title>Mohamed Ali Adweni | Portfolio</title>
+  <title>Mohamed Ali Adweni | Flutter Developer</title>
+
+  <!-- Fonts and Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  
   <style>
-    body {
+    :root {
+      --primary-color: #2196F3;
+      --secondary-color: #1565C0;
+      --accent-color: #00BCD4;
+      --background-color: #FFFFFF;
+      --surface-color: #F8FAFC;
+      --text-primary: #1A1F36;
+      --text-secondary: #4F566B;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
       margin: 0;
-      overflow: hidden;
-      background: linear-gradient(135deg, #1E3D59, #17C3B2);
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--background-color);
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: var(--text-primary);
+      padding: 20px;
     }
 
     .loading-container {
       text-align: center;
       width: 100%;
-      max-width: 500px;
+      max-width: 560px;
       padding: 40px;
-    }
-
-    .identity-container {
-      margin-bottom: 30px;
-    }
-
-    .name {
-      color: white;
-      font-size: 42px;
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: -0.5px;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      animation: fadeInUp 1s ease-out forwards;
-    }
-
-    .title {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 18px;
-      font-weight: 400;
-      margin: 10px 0 0;
-      opacity: 0;
-      animation: fadeInUp 1s 0.3s ease-out forwards;
-    }
-
-    .loading-text {
-      color: white;
-      font-size: 16px;
-      margin: 30px 0 20px;
-      opacity: 0;
-      animation: fadeInOut 2s 0.6s infinite;
-    }
-
-    .loading-spinner {
-      width: 80px;
-      height: 80px;
-      position: relative;
-      margin: 0 auto;
-      animation: spinnerRotate 2s infinite ease;
-      opacity: 0;
-      animation: fadeIn 0.5s 0.8s ease forwards, spinnerRotate 2s 0.8s infinite ease;
-    }
-
-    .spinner-circle {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      border: 8px solid transparent;
-      border-radius: 50%;
-      border-top-color: #FF6E40;
-      border-right-color: #17C3B2;
-      border-bottom-color: #FF6E40;
-      border-left-color: #17C3B2;
-      animation: spinnerRotateReverse 1s infinite linear;
-    }
-
-    .spinner-inner {
-      width: 60%;
-      height: 60%;
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      border: 8px solid transparent;
-      border-radius: 50%;
-      border-top-color: white;
-      border-right-color: white;
-      border-bottom-color: white;
-      border-left-color: white;
-      animation: spinnerRotate 1.5s infinite linear;
-    }
-
-    .progress-bar {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      margin: 20px auto;
+      background: var(--surface-color);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
-      opacity: 0;
-      animation: fadeIn 0.5s 1s ease forwards;
     }
 
-    .progress-bar::after {
+    .loading-container::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -50%;
-      width: 50%;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .identity-container {
+      margin-bottom: 32px;
+    }
+
+    .name {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      color: var(--text-secondary);
+      font-size: clamp(16px, 2.5vw, 18px);
+      font-weight: 500;
+    }
+
+    .tech-stack {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .tech-item {
+      background: white;
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .tech-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .animation-container {
+      width: 180px;
+      height: 180px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    lottie-player {
+      width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,1));
-      animation: progressBar 1.5s infinite ease-in-out;
+    }
+
+    .loading-text {
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 16px;
+      opacity: 0.9;
+      letter-spacing: 0.3px;
+    }
+
+    .loading-text::after {
+      content: '...';
+      animation: dots 1.5s infinite;
+      display: inline-block;
+      width: 24px;
+      text-align: left;
     }
 
     .tagline {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
-      margin-top: 30px;
-      font-weight: 300;
-      opacity: 0;
-      animation: fadeIn 1s 1.2s ease forwards;
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.6;
+      margin: 24px 0;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .skills {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 0 16px;
     }
 
-    @keyframes fadeInUp {
+    .skill-badge {
+      background: white;
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .skill-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      background: var(--primary-color);
+      color: white;
+      border-color: transparent;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40%, 60% { content: '..'; }
+      80%, 100% { content: '...'; }
+    }
+
+    @keyframes scaleIn {
       from { 
         opacity: 0;
-        transform: translateY(20px);
+        transform: scale(0.95);
       }
       to { 
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
       }
     }
 
-    @keyframes spinnerRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .scale-in {
+      animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
-    @keyframes spinnerRotateReverse {
-      from { transform: rotate(360deg); }
-      to { transform: rotate(0deg); }
-    }
-
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes progressBar {
-      0% { left: -50%; }
-      100% { left: 100%; }
-    }
-
-    #flutter-target {
-      opacity: 0;
-      transition: opacity 0.5s ease-in;
-    }
-
-    .flutter-loader {
-      display: none;
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
+</head>
+<body>
+  <div id="loading-container" class="loading-container scale-in" role="progressbar" aria-label="Loading application">
+    <div class="identity-container">
+      <h1 class="name">Mohamed Ali Adweni</h1>
+      <p class="title">Flutter Developer</p>
+    </div>
+
+    <div class="tech-stack">
+      <span class="tech-item">Flutter</span>
+      <span class="tech-item">Dart</span>
+      <span class="tech-item">Firebase</span>
+      <span class="tech-item">GetX</span>
+    </div>
+
+    <div class="animation-container">
+      <lottie-player
+        src="https://assets5.lottiefiles.com/packages/lf20_3vbOcw.json"
+        background="transparent"
+        speed="1"
+        loop
+        autoplay>
+      </lottie-player>
+    </div>
+
+    <p class="tagline">
+      Crafting Beautiful Cross-Platform Experiences<br>
+      Mobile • Web • Desktop
+    </p>
+
+    <div class="skills">
+      <span class="skill-badge">UI/UX Design</span>
+      <span class="skill-badge">State Management</span>
+      <span class="skill-badge">Clean Architecture</span>
+      <span class="skill-badge">REST APIs</span>
+      <span class="skill-badge">Firebase</span>
+      <span class="skill-badge">Flutter & NestJS</span>
+    </div>
+  </div>
+
   <script>
     window.addEventListener('load', function() {
       setTimeout(function() {
         var loadingElement = document.getElementById('loading-container');
         var flutterElement = document.getElementById('flutter-target');
         
-        if (flutterElement && loadingElement) {
+        if (loadingElement && flutterElement) {
+          loadingElement.classList.add('fade-out');
           flutterElement.style.opacity = '1';
+          
+          setTimeout(function() {
+            loadingElement.style.display = 'none';
+          }, 300);
+        }
+      }, 3000);
+    });
+
+    window.addEventListener('flutter-first-frame', function() {
+      var loadingElement = document.getElementById('loading-container');
+      var flutterElement = document.getElementById('flutter-target');
+      
+      if (loadingElement && flutterElement) {
+        loadingElement.classList.add('fade-out');
+        flutterElement.style.opacity = '1';
+        
+        setTimeout(function() {
           loadingElement.style.display = 'none';
-        }
-      }, 2500);
+        }, 300);
+      }
     });
   </script>
-  <link rel="manifest" href="manifest.json">
-  <script>
-    var serviceWorkerVersion = null;
-  </script>
-  <script src="flutter.js" defer></script>
-</head>
-<body>
-  <div id="loading-container" class="loading-container">
-    <div class="identity-container">
-      <h1 class="name">Mohamed Ali Adweni</h1>
-      <p class="title">Software Engineer & Flutter Expert</p>
-    </div>
-    <div class="loading-text">Preparing your experience...</div>
-    <div class="loading-spinner">
-      <div class="spinner-circle"></div>
-      <div class="spinner-inner"></div>
-    </div>
-    <div class="progress-bar"></div>
-    <p class="tagline">Building beautiful, responsive applications</p>
-  </div>
-  <div id="flutter-target"></div>
-  <script>
-    window.addEventListener('load', function(ev) {
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
+  <script src="main.dart.js" type="application/javascript"></script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

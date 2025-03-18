@@ -51,6 +51,9 @@ class CVData {
   final String phone;
   final String location;
   final String? photoUrl;
+  final String? github;
+  final String? linkedin;
+
   final String summary;
   final List<SocialLink> socialLinks;
   final List<Experience> experiences;
@@ -68,6 +71,8 @@ class CVData {
     required this.phone,
     required this.location,
     this.photoUrl,
+    this.linkedin,
+    this.github,
     required this.summary,
     this.socialLinks = const [],
     this.experiences = const [],
