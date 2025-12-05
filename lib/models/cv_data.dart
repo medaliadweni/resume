@@ -88,9 +88,9 @@ class CVData {
   static CVData get sample => CVData(
     name: 'Mohamed Ali Adweni',
     title: 'Full-Stack Developer | Flutter & NestJS',
-    email: 'mouhamedaliadoinii@gmail.com',
-    phone: '01577 3627875',
-    location: 'Bamberg, Germany',
+    email: 'maliadweni@gmail.com',
+    phone: '15510274367',
+    location: 'MarkusPlatz 14R Bamberg, Germany',
     photoUrl: 'assets/images/profile.jpeg',
     summary: 'Highly skilled Full-Stack Developer specializing in Flutter and NestJS. Creates responsive, high-performance applications across mobile, web, and backend platforms. Delivers clean, optimized code with expertise in UI implementation and API development. Experienced in deploying applications to Google Play Store and App Store.',
     socialLinks: [
